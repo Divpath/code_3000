@@ -20,7 +20,9 @@ def link_records(anon_df, aux_df):
     containing ONLY uniquely matched records.
     """
     matches_df = anon_df.merge(aux_df, on=["age", "gender", "zip3"], how="inner")
-    return matches_df
+    new_df = matches_df[["anon_id", "name"]]
+    new_df.columns = [["anon_id", "matched_name"]]
+    return new_df
 
 def deanonymization_rate(matches_df, anon_df):
     """
