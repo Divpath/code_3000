@@ -30,4 +30,6 @@ def deanonymization_rate(matches_df, anon_df):
     that were uniquely re-identified.
     """
     print(len(matches_df), len(anon_df))
-    return len(matches_df) / len(anon_df)
+    counts = matches_df['anon_id'].value_counts()
+    unique_matches = (counts == 1).sum()
+    return unique_matches / len(anon_df)
