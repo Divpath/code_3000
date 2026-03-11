@@ -22,6 +22,7 @@ def link_records(anon_df, aux_df):
     matches_df = anon_df.merge(aux_df, on=["age", "gender", "zip3"], how="inner")
     new_df = matches_df[["anon_id", "name"]]
     new_df.columns = [["anon_id", "matched_name"]]
+    new_df.drop_duplicates(inplace=True)
     return new_df
 
 def deanonymization_rate(matches_df, anon_df):
